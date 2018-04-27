@@ -1,10 +1,6 @@
 <nav>
-  <ul class="nav-list" *ngFor="let item of menuItems">
-    <li><a href="{{ item.url }}"></a>{{ item.label }}</li>
-    <!-- <li class="nav-item"><a href="http://">Link</a></li>
-    <li class="nav-item"><a href="http://">Link</a></li>
-    <li class="nav-item"><a href="http://">Link</a></li> -->
+  <ul class="nav-list" *ngFor="let menuItem of menuItems">
+    <li class="nav-item"><a href="{{ menuItem.url }}">{{ menuItem.label }}</a></li>
   </ul>
-
   <gw-login></gw-login>
 </nav>

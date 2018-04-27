@@ -16,11 +16,14 @@ export class GwNavigationComponent implements OnInit, OnDestroy {
 
   ngOnInit() { // Angular component lifecycle hook
     this.menuItems = [{
-      label: 'test',
+      label: 'home',
       url: '/'
     }, {
-      label: 'something',
-      url: '/something'
+      label: 'about',
+      url: '/about'
+    }, {
+      label: 'contact',
+      url: '/contact'
     }];
   }
 
