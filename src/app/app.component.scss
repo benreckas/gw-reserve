@@ -1,1 +1,12 @@
+@import '~variables.scss';
 
+main {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: 20px;
+}
+
+gw-navigation {
+  grid-column: 1 / 13;
+  box-shadow: 0 0 10px transparentize($color: $black, $amount: .4);
+}

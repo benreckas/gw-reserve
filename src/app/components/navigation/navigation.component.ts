@@ -11,20 +11,35 @@ import { INavigation } from './../../interfaces/INavigationItem';
 export class GwNavigationComponent implements OnInit, OnDestroy {
 
   public menuItems: INavigation[];
+  private showMenu = false;
 
   constructor() {}
 
   ngOnInit() { // Angular component lifecycle hook
     this.menuItems = [{
-      label: 'home',
-      url: '/'
+      label: 'welcome',
+      url: 'welcome'
     }, {
       label: 'about',
-      url: '/about'
-    }, {
-      label: 'contact',
-      url: '/contact'
-    }];
+      url: 'about'
+    },
+    {
+      label: 'halo',
+      url: 'halo'
+    },
+    {
+      label: 'simcity',
+      url: 'simcity'
+    },
+    {
+      label: 'donkey kong',
+      url: 'donkey-kong'
+    },
+    {
+      label: 'zelda',
+      url: 'zelda'
+    }
+  ];
   }
 
   ngOnDestroy(): void {

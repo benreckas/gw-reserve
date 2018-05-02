@@ -1,10 +1,16 @@
+@import '~variables.scss';
+
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 5px 50px;
-  background-color: #dddddd;
-  height: 200px;
+  height: 100px;
+  background-color: $pink;
+
+  div {
+    width: 50%;
+  }
 
   .nav-list {
     list-style: none;
@@ -13,11 +19,21 @@ nav {
     margin: 0;
 
     .nav-item {
-      margin: 0 20px;
-      color: black;
+      margin-right: 20px;
+      color: $white;
 
       a {
+        font-family: $fftwo;
+        background-color: transparentize($color: $black, $amount: .15);
         padding: 1em;
+        text-transform: uppercase;
+        font-weight: bold;
+        border-radius: 5px;
+        transition: all .3s;
+
+        &:hover {
+          background-color: $black;
+        }
       }
     }
   }

@@ -1,6 +1,10 @@
 <nav>
-  <ul class="nav-list" *ngFor="let menuItem of menuItems">
-    <li class="nav-item"><a href="{{ menuItem.url }}">{{ menuItem.label }}</a></li>
-  </ul>
+  <div>
+    <i class="fas fa-bars" (click)="showMenu = true">
+      <ul class="nav-list" *ngIf="showMenu">
+        <li class="nav-item" *ngFor="let menuItem of menuItems"><a [routerLink]="menuItem.url">{{ menuItem.label }}</a></li>
+      </ul>
+    </i>
+  </div>
   <gw-login></gw-login>
 </nav>

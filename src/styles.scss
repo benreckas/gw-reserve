@@ -1,17 +1,61 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600|Passion+One:700');
+@import '~variables.scss';
+
 body {
   margin: 0;
   padding: 0;
+  background: $white;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $ffone;
+  text-transform: uppercase;
+  color: $black;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+  text-transform: uppercase;
 }
 
 button {
+  font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .5px;
   padding: 0 20px;
   min-width: 48px;
   min-height: 48px;
   border-radius: 5px;
+}
+
+// Color Classes
+
+.black {
+  color: $black;
+}
+
+.white {
+  color: $white;
+}
+
+.blue {
+  color: $blue;
+}
+
+.green {
+  color: $green;
+}
+
+.yellow {
+  color: $yellow;
+}
+
+.orange {
+  color: $orange;
+}
+
+.pink {
+  color: $pink;
 }
