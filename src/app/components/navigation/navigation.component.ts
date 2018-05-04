@@ -1,6 +1,9 @@
 import { Component, style, OnInit, OnDestroy } from '@angular/core';
 
 import { INavigation } from './../../interfaces/INavigationItem';
+import { IRoom } from '../../interfaces/IRoom';
+import { RoomService } from '../../services/room.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector    : 'gw-navigation',
@@ -11,35 +14,58 @@ import { INavigation } from './../../interfaces/INavigationItem';
 export class GwNavigationComponent implements OnInit, OnDestroy {
 
   public menuItems: INavigation[];
-  private showMenu = false;
+  public showMenu = false;
 
-  constructor() {}
+  constructor(
+    private _roomService: RoomService
+  ) {}
 
   ngOnInit() { // Angular component lifecycle hook
+
     this.menuItems = [{
-      label: 'welcome',
+      label: 'Welcome',
       url: 'welcome'
     }, {
-      label: 'about',
+      label: 'About',
       url: 'about'
-    },
-    {
-      label: 'halo',
-      url: 'halo'
-    },
-    {
-      label: 'simcity',
-      url: 'simcity'
-    },
-    {
-      label: 'donkey kong',
-      url: 'donkey-kong'
-    },
-    {
-      label: 'zelda',
-      url: 'zelda'
-    }
-  ];
+    }];
+
+    const roomItems: INavigation[] = this._roomService.rooms.map(room => {
+      return {
+        label: room.title,
+        url: `room/${room.id}`
+      };
+    });
+
+    roomItems.forEach(roomItem => this.menuItems.splice(1, 0, roomItem));
+
+    // this.menuItems = [
+    //   {
+    //     label: 'welcome',
+    //     url: 'welcome'
+    //   },
+    //   {
+    //     label: 'about',
+    //     url: 'about'
+    //   },
+    //   {
+    //     label: 'halo',
+    //     url: 'halo'
+    //   },
+    //   {
+    //     label: 'simcity',
+    //     url: 'simcity'
+    //   },
+    //   {
+    //     label: 'donkey kong',
+    //     url: 'donkey-kong'
+    //   },
+    //   {
+    //     label: 'zelda',
+    //     url: 'zelda'
+    //   }
+    // ];
+    console.log(this.navItems);
   }
 
   ngOnDestroy(): void {

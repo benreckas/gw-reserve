@@ -27,10 +27,9 @@ import { GwAboutComponent } from './components/about/about.component';
 import { GwLoginComponent } from './components/navigation/login/login.component';
 import { GwNavigationComponent } from './components/navigation/navigation.component';
 import { GwNotFoundComponent } from './components/not-found/not-found.component';
-import { GwZeldaComponent } from './components/zelda/zelda.component';
-import { GwSimcityComponent } from './components/simcity/simcity.component';
-import { GwHaloComponent } from './components/halo/halo.component';
-import { GwDonkeyKongComponent } from './components/donkey-kong/donkey-kong.component';
+import { GwRoomComponent } from './components/room/room.component';
+
+import { RoomService } from './services/room.service';
 
 const routes: Route[] = [ // Order matters. Most specific on top. Catch-all on bottom.
   {
@@ -42,20 +41,8 @@ const routes: Route[] = [ // Order matters. Most specific on top. Catch-all on b
     path: 'about'
   },
   {
-    component: GwHaloComponent,
-    path: 'halo'
-  },
-  {
-    component: GwSimcityComponent,
-    path: 'simcity'
-  },
-  {
-    component: GwDonkeyKongComponent,
-    path: 'donkey-kong'
-  },
-  {
-    component: GwZeldaComponent,
-    path: 'zelda'
+    component: GwRoomComponent,
+    path: 'room/:id'
   },
   { // Redirect to www.url.com/welcome
     path: '',
@@ -79,10 +66,10 @@ const routes: Route[] = [ // Order matters. Most specific on top. Catch-all on b
     GwNotFoundComponent,
     GwLoginComponent,
     GwNavigationComponent,
-    GwZeldaComponent,
-    GwSimcityComponent,
-    GwHaloComponent,
-    GwDonkeyKongComponent
+    GwRoomComponent
+  ],
+  providers: [
+    RoomService
   ],
   bootstrap: [ // Choosing the component that boots
     AppComponent
