@@ -1,4 +1,5 @@
 import { Component, style, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { INavigation } from './../../interfaces/INavigationItem';
 import { IRoom } from '../../interfaces/IRoom';
@@ -17,18 +18,24 @@ export class GwNavigationComponent implements OnInit, OnDestroy {
   public showMenu = false;
 
   constructor(
-    private _roomService: RoomService
+    private _roomService: RoomService,
+    private _router: Router
   ) {}
 
   ngOnInit() { // Angular component lifecycle hook
+    this.buildMenu();
+  }
 
+  private buildMenu() {
     this.menuItems = [{
       label: 'Welcome',
       url: 'welcome'
-    }, {
-      label: 'About',
-      url: 'about'
-    }];
+    }
+    // , {
+    //   label: 'About',
+    //   url: 'about'
+    // }
+    ];
 
     const roomItems: INavigation[] = this._roomService.rooms.map(room => {
       return {
@@ -37,35 +44,7 @@ export class GwNavigationComponent implements OnInit, OnDestroy {
       };
     });
 
-    roomItems.forEach(roomItem => this.menuItems.splice(1, 0, roomItem));
-
-    // this.menuItems = [
-    //   {
-    //     label: 'welcome',
-    //     url: 'welcome'
-    //   },
-    //   {
-    //     label: 'about',
-    //     url: 'about'
-    //   },
-    //   {
-    //     label: 'halo',
-    //     url: 'halo'
-    //   },
-    //   {
-    //     label: 'simcity',
-    //     url: 'simcity'
-    //   },
-    //   {
-    //     label: 'donkey kong',
-    //     url: 'donkey-kong'
-    //   },
-    //   {
-    //     label: 'zelda',
-    //     url: 'zelda'
-    //   }
-    // ];
-    console.log(this.navItems);
+    roomItems.forEach(roomItem => this.menuItems.push(roomItem));
   }
 
   ngOnDestroy(): void {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, tap, take } from 'rxjs/operators';
+import { RoomService } from '../../services/room.service';
+import { IRoom } from '../../interfaces/IRoom';
 
 @Component({
   selector    : 'gw-room',
@@ -11,9 +13,11 @@ import { map, tap, take } from 'rxjs/operators';
 export class GwRoomComponent implements OnInit {
 
   public id: string;
+  private rooms: IRoom[] = [];
 
   constructor(
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _roomService: RoomService
   ) { }
 
   public ngOnInit() {
@@ -29,6 +33,9 @@ export class GwRoomComponent implements OnInit {
       .subscribe(data => {
         this.id = data;
       });
+
+    this.rooms = this._roomService['rooms'];
+    console.log(this.rooms);
   }
 
 }
