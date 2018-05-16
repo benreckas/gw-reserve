@@ -1,10 +1,11 @@
 <nav>
-  <div>
-    <i class="fas fa-bars" (click)="showMenu = true">
-      <ul class="nav-list" *ngIf="showMenu">
-        <li class="nav-item" *ngFor="let menuItem of menuItems"><a [routerLink]="menuItem.url" routerLinkActive="active">{{ menuItem.label }}</a></li>
-      </ul>
-    </i>
+  <div class="flex-container">
+    <div class="nav-icon">
+      <i class="fas" (click)="showMenu = !showMenu" [ngClass]="{'fa-bars': !showMenu, 'fa-times': showMenu}"></i>
+    </div>
+    <ul class="nav-list" *ngIf="showMenu">
+      <li class="nav-item" *ngFor="let menuItem of menuItems"><a [routerLink]="menuItem.url" routerLinkActive="active">{{ menuItem.label }}</a></li>
+    </ul>
   </div>
   <gw-login></gw-login>
 </nav>

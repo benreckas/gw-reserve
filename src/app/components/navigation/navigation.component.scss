@@ -8,8 +8,23 @@ nav {
   height: 100px;
   background-color: $pink;
 
-  div {
-    width: 50%;
+  div .nav-icon {
+    min-width: 48px;
+    min-height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  i {
+    font-size: 36px;
+    color: transparentize($color: $black, $amount: .15);
+
+    &:hover {
+      cursor: pointer;
+      color: $black;
+    }
+
   }
 
   .nav-list {
@@ -32,6 +47,7 @@ nav {
         transition: all .3s;
 
         &:hover {
+          color: $green;
           background-color: $black;
         }
       }
@@ -39,6 +55,7 @@ nav {
   }
 }
 
-.active {
-  background-color: $green;
+.flex-container {
+  display: flex;
+  align-items: center;
 }

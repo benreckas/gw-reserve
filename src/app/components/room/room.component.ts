@@ -34,7 +34,7 @@ export class GwRoomComponent implements OnInit {
         this.id = data;
       });
 
-    this.rooms = this._roomService['rooms'];
+    // this.rooms = this._roomService['rooms'];
     console.log(this.rooms);
   }
 

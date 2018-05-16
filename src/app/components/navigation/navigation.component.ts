@@ -1,10 +1,14 @@
 import { Component, style, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { map } from 'rxjs/operators';
+
 import { INavigation } from './../../interfaces/INavigationItem';
 import { IRoom } from '../../interfaces/IRoom';
 import { RoomService } from '../../services/room.service';
 import { Title } from '@angular/platform-browser';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector    : 'gw-navigation',
@@ -27,24 +31,33 @@ export class GwNavigationComponent implements OnInit, OnDestroy {
   }
 
   private buildMenu() {
-    this.menuItems = [{
-      label: 'Welcome',
-      url: 'welcome'
-    }
-    // , {
-    //   label: 'About',
-    //   url: 'about'
-    // }
+    this.menuItems = [
+      {
+        label: 'Welcome',
+        url: 'welcome'
+      }
     ];
 
-    const roomItems: INavigation[] = this._roomService.rooms.map(room => {
-      return {
-        label: room.title,
-        url: `room/${room.id}`
-      };
-    });
-
-    roomItems.forEach(roomItem => this.menuItems.push(roomItem));
+    this._roomService.rooms
+      .pipe(
+        map((rooms: IRoom[]) => {
+          const navItems: INavigation[] = rooms.map(room => {
+            return {
+              label: room.title,
+              url: `room/${room.id}`
+            };
+          });
+          return navItems;
+        }
+        )
+      )
+      .subscribe(res => {
+        console.log('Res: ', res);
+        res.forEach(room => {
+          console.log('Room: ', room);
+          this.menuItems.push(room);
+        });
+      });
   }
 
   ngOnDestroy(): void {
