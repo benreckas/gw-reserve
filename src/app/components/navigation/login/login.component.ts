@@ -1,11 +1,9 @@
-import * as firebase from 'firebase';
-
-import { Component, style, OnInit } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { take } from 'rxjs/operators';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { map, take, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
+
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'gw-login',
@@ -14,22 +12,53 @@ import { Observable } from 'rxjs/Observable';
 })
 
 export class GwLoginComponent implements OnInit {
-  public userObservable: Observable<firebase.User>;
+  public loggedInUser;
+  public loginBtnText: string;
 
   constructor(
     private _actvatedRoute: ActivatedRoute,
-    private _auth: AngularFireAuth
-  ) { }
+    private _loginService: LoginService
+  ) {
+    this._loginService.getUser()
+      .map(user => {
+        if (!user) {
+          return;
+        }
+
+        return {
+          displayName: user.displayName,
+          photoURL: user.photoURL
+        };
+      })
+      .subscribe(user => {
+        this.loggedInUser = user;
+        console.log('Currently logged in user: ', this.loggedInUser);
+      });
+
+  }
 
   ngOnInit() {
-    this.userObservable = this._auth.authState;
+    this.loggedInUser ? this.loginBtnText = 'Logout' : this.loginBtnText = 'Logout';
+    console.log('User on init: ', this.loggedInUser);
+  }
 
-    this.userObservable.subscribe(user => console.log(user));
+  public toggleLogin() {
+    if (!this.loggedInUser) {
+      this.login();
+      this.loginBtnText = 'Logout';
+    } else {
+      this.logout();
+      this.loginBtnText = 'Login';
+    }
   }
 
   public login() {
-    this._auth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    this._loginService.login();
+    console.log('|========== LOGIN RAN ==========|');
   }
 
-  // this._auth.auth.signOut();
+  public logout() {
+    this._loginService.logout();
+    console.log('|========== LOGOUT RAN ==========|');
+  }
 }

@@ -2,6 +2,11 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600|Passion+One:700');
 @import '~variables.scss';
 
+*:focus {
+  outline: none;
+  box-shadow: 0 0 8px 3px $blue;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -28,6 +33,7 @@ button {
   min-width: 48px;
   min-height: 48px;
   border-radius: 5px;
+  border: none;
 }
 
 // Color Classes
@@ -58,4 +64,13 @@ button {
 
 .pink {
   color: $pink;
+}
+
+.red-btn {
+  background-color: red;
+}
+
+.black-btn {
+  background-color: transparentize($color: $black, $amount: .15);
+  color: $white;
 }

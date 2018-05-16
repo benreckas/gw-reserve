@@ -1,1 +1,2 @@
-<button (click)="login()">Login</button>
+<button [ngClass]="{'black-btn': loginBtnText=='Logout'}" (click)="toggleLogin()">{{ loginBtnText }}</button>
+<!-- <button ng-style="login-btn" (click)="login()">Login</button> -->

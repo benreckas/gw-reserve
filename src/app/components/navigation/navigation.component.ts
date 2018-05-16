@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { INavigation } from './../../interfaces/INavigationItem';
 import { IRoom } from '../../interfaces/IRoom';
 import { RoomService } from '../../services/room.service';
+// import { LoginService } from '../../services/login.service';
 import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -18,16 +19,34 @@ import { Subscription } from 'rxjs/Subscription';
 
 export class GwNavigationComponent implements OnInit, OnDestroy {
 
+  // public loggedInUser;
   public menuItems: INavigation[];
   public showMenu = false;
 
   constructor(
     private _roomService: RoomService,
+    // private _loginService: LoginService,
     private _router: Router
-  ) {}
+  ) { }
 
   ngOnInit() { // Angular component lifecycle hook
     this.buildMenu();
+
+    // this._loginService.getUser()
+    //   .map(user => {
+    //     if (!user) {
+    //       return;
+    //     }
+
+    //     return {
+    //       displayName: user.displayName,
+    //       photoURL: user.photoURL
+    //     };
+    //   })
+    //   .subscribe(user => {
+    //     this.loggedInUser = user;
+    //     console.log('Got the user yo!', this.loggedInUser);
+    //   });
   }
 
   private buildMenu() {
